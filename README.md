@@ -186,7 +186,7 @@ Expected on Fresh Start:
 
 ### Files Modified:
 
-**1. `manager.py`** (orchestration layer)
+**1. [manager.py](manager.py) ** (orchestration layer)
 - Unchanged from original (compatibility)
 - Works with both old and new `manager_modules.py`
 
