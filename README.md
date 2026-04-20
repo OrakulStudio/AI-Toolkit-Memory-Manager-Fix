@@ -190,7 +190,7 @@ Expected on Fresh Start:
 - Unchanged from original (compatibility)
 - Works with both old and new `manager_modules.py`
 
-**2. `manager_modules.py`** (core logic)
+**2. [manager_modules.py](manager_modules.py)** (core logic)
 - Added CUDA streams + events
 - Implemented double buffering
 - Added pin memory handling
