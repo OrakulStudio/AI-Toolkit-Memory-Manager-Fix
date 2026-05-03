@@ -425,7 +425,7 @@ If we can optimize code under artillery fire, you can apply it anywhere.
 **License:** CC BY-SA 4.0 - Use freely, share improvements, credit the source.
 License: This patch is based on AI-Toolkit (MIT License).
 Copyright (c) 2026 Orakul Project / Роман. 
-**Repository:** [oracle-pstate-unlock](https://github.com/orakulstorm-hue)  
+**Repository:** [oracle-pstate-unlock](https://github.com/OrakulStudio)  
 **Part of:** Oracle Project research series
 
 *Overclockers forever. CUDA engineers forever.* 🔥⚡
