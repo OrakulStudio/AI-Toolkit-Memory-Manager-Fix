@@ -4,7 +4,7 @@
 **Authors:** Роман (Orakul)  
 **Date:** February 2026  
 **Status:** VALIDATED - Continue Training Working
-
+[The updated repository is here](https://github.com/OrakulStudio/ai-toolkit-Ostris-bonememory)
 ---
 attention:
 
