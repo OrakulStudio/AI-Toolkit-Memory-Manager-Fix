@@ -66,62 +66,37 @@ AI-Toolkit's memory manager was designed with "adaptive logic" that:
 **After:**
 ```python
 # Async with streams
-with torch.cuda.stream(transfer_stream):
-    transfer_stream.wait_event(compute_start_event)
-    weight_gpu = weight_cpu.to('cuda', non_blocking=True)
-    transfer_finished_event.record()
-
-torch.cuda.current_stream().wait_event(transfer_finished_event)
-result = compute(x, weight_gpu)
+> 🔒 **Orakul Studio Proprietary Tech**  
+> Core architecture and high-performance memory optimization layers are closed-source. Distributed exclusively via compiled binary module. The repository is open, and the pipeline is fully functional and stable..
 ```
 
 **Effect:**
-- PCIe transfers and GPU compute happen **in parallel**
-- Minimal blocking (only wait for specific events)
-- No more "wait for everything" synchronization
-
+> 🔒 **Orakul Studio Proprietary Tech**  
+> Core architecture and high-performance memory optimization layers are closed-source. Distributed exclusively via compiled binary module. The repository is open, and the pipeline is fully functional and stable..
 ---
 
 #### **2. Pin Memory (Fast PCIe DMA)**
 
 ```python
-def _ensure_cpu_pinned(tensor):
-    if tensor.device.type != "cpu":
-        tensor = tensor.to("cpu")
-    
-    if not tensor.is_pinned():
-        tensor = tensor.pin_memory()  # ← CRITICAL
-    
-    return tensor
+> 🔒 **Orakul Studio Proprietary Tech**  
+> Core architecture and high-performance memory optimization layers are closed-source. Distributed exclusively via compiled binary module. The repository is open, and the pipeline is fully functional and stable..
 ```
 
 **What this does:**
-- Pinned memory = RAM pages that can't be swapped
-- Enables Direct Memory Access (DMA) via PCIe
-- `non_blocking=True` ONLY works with pinned memory
-- **Result:** +30-50% faster PCIe transfers
-
+> 🔒 **Orakul Studio Proprietary Tech**  
+> Core architecture and high-performance memory optimization layers are closed-source. Distributed exclusively via compiled binary module. The repository is open, and the pipeline is fully functional and stable..
 ---
 
 #### **3. Double Buffering (Ping-Pong)**
 
 ```python
-# Two buffers for weights
-w_buffers = [None, None]
-forward_clk = 0  # Toggle between 0 and 1
-
-# Current iteration uses buffer[0]
-idx = forward_clk
-result = compute(x, w_buffers[idx])
-
-# Meanwhile, load next weights into buffer[1]
-forward_clk ^= 1  # XOR flip (0→1 or 1→0)
+> 🔒 **Orakul Studio Proprietary Tech**  
+> Core architecture and high-performance memory optimization layers are closed-source. Distributed exclusively via compiled binary module. The repository is open, and the pipeline is fully functional and stable..
 ```
 
 **Effect:**
-- GPU never waits for data
-- While processing buffer[0], buffer[1] loads
-- Next iteration: use buffer[1], load buffer[0]
+> 🔒 **Orakul Studio Proprietary Tech**  
+> Core architecture and high-performance memory optimization layers are closed-source. Distributed exclusively via compiled binary module. The repository is open, and the pipeline is fully functional and stable..
 - **Zero downtime**
 
 ---
@@ -130,20 +105,19 @@ forward_clk ^= 1  # XOR flip (0→1 or 1→0)
 
 **Before:**
 ```python
-torch.cuda.synchronize()  # Blocks EVERYTHING
+> 🔒 **Orakul Studio Proprietary Tech**  
+> Core architecture and high-performance memory optimization layers are closed-source. Distributed exclusively via compiled binary module. The repository is open, and the pipeline is fully functional and stable..
 ```
 
 **After:**
 ```python
-stream.wait_event(specific_event)  # Blocks only this stream
+> 🔒 **Orakul Studio Proprietary Tech**  
+> Core architecture and high-performance memory optimization layers are closed-source. Distributed exclusively via compiled binary module. The repository is open, and the pipeline is fully functional and stable..
 ```
 
 **Effect:**
-- Streams wait for each other (precise sync)
-- CPU continues working
-- Other streams unaffected
-- **Minimal blocking**
-
+> 🔒 **Orakul Studio Proprietary Tech**  
+> Core architecture and high-performance memory optimization layers are closed-source. Distributed exclusively via compiled binary module. The repository is open, and the pipeline is fully functional and stable..
 ---
 
 ## 📊 Results
@@ -213,7 +187,7 @@ git apply memory_manager.patch
 oracle-pstate-unlock/
 └─ patches/
     ├─ manager.py
-    ├─ manager_modules.py
+    ├─ manager_modules.pyd
     └─ memory_manager.patch
 ```
 ### 📥 Download the Fix
