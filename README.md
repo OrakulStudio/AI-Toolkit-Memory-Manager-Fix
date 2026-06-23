@@ -59,11 +59,8 @@ AI-Toolkit's memory manager was designed with "adaptive logic" that:
 
 **Before:**
 ```python
-# Blocking operations
-weight_gpu = weight_cpu.to('cuda')
-torch.cuda.synchronize()  # Wait for EVERYTHING
-result = compute(x, weight_gpu)
-torch.cuda.synchronize()  # Wait again
+> 🔒 **Orakul Studio Proprietary Tech**  
+> Core architecture and high-performance memory optimization layers are closed-source. Distributed exclusively via compiled binary module. The repository is open, and the pipeline is fully functional and stable..
 ```
 
 **After:**
