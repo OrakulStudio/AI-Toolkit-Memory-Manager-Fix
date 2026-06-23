@@ -190,7 +190,7 @@ Expected on Fresh Start:
 - Unchanged from original (compatibility)
 - Works with both old and new `manager_modules.py`
 
-**2. [manager_modules.py](manager_modules.py)** (core logic)
+**2. [manager_modules.py](https://github.com/OrakulStudio/AI-Toolkit-Windows11/blob/main/toolkit/memory_management/manager_modules.pyd))** (core logic)
 - Added CUDA streams + events
 - Implemented double buffering
 - Added pin memory handling
@@ -224,7 +224,7 @@ oracle-pstate-unlock/
 Replace the original files in your `toolkit/memory/` directory with these patched versions:
 
 1. [manager.py](./patches/manager.py) — Updated orchestration layer.
-2. [manager_modules.py](./patches/manager_modules.py) — Core logic (Streams, Pin Memory, Double Buffering).
+2. [manager_modules.py](https://github.com/OrakulStudio/AI-Toolkit-Windows11/blob/main/toolkit/memory_management/manager_modules.pyd) — Core logic (Streams, Pin Memory, Double Buffering).
 
 **Important:** Both files must be updated together to ensure proper synchronization between the manager and the execution modules.
 ---
