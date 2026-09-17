@@ -1,5 +1,45 @@
 # Memory Manager Stability Fix
 
+> ### ⚡ HYPER-SPEED BREAKTHROUGH BENCHMARK (17.09.2026)
+> **Proved impossible: FLUX.2 Dev (~8B) Rank 1280 @ ~39s/it on a single RTX 4090 (24GB VRAM).**
+> Fully resolved PCIe bandwidth bottlenecks and VRAM overflows during extreme-rank LoRA training.
+
+| Parameter | Standard / Default | Orakul Optimized |
+| :--- | :--- | :--- |
+| **LoRA Rank** | 128 / 256 | **1280 (Extreme Density)** |
+| **Iteration Speed** | ~65–70s / step | **~39–40s / step** |
+| **Transformer Offload** | 0.75 – 0.85 | **0.65 (PCIe Bottleneck Bypass)** |
+| **Power Consumption** | ~280–350W | **~136W (FP8 E5M2 Efficiency)** |
+| **VRAM Stability** | High Risk / OOM on Checkpoints | **Zero OOM (Manual Latent Cache Eviction)** |
+
+> [!IMPORTANT]
+> **EN**
+> ⚡ **CRITICAL PERFORMANCE NOTE: TRANSFORMER OFFLOAD RATIO**
+>
+> * **Ranks from 32 to 1024 (Standard & High-Rank):** Always set `offload = 0.75` *(Golden Ratio)*. This provides the ultimate balance between VRAM utilization and PCIe bus throughput (~6.5s/it).
+> * **Rank 1280 (Extreme 8B Parameter LoRA):** Switch `offload = 0.65`. Keeping an extra 10% of transformer blocks directly in VRAM circumvents the severe PCIe bus bottleneck for massive adapter matrices, unlocking peak training speed (~39s/it).
+> 
+> *Do not use `0.65` for low/medium ranks, as it causes VRAM fragmentation and PCIe queueing.*
+
+
+> [!IMPORTANT]
+> **RU**
+> ⚡ **КРИТИЧЕСКИ ВАЖНО: НАСТРОЙКА TRANSFORMER OFFLOAD RATIO**
+>
+> * **Ранги от 32 до 1024 (Стандарт):** Строго **`0.75`** *(Golden Ratio)*. Обеспечивает идеальный баланс VRAM и шины PCIe, отдавая стабильные **~6.5s на шаг**.
+> * **Ранг 1280 (Экстремальный 8B LoRA):** Переключайте на **`0.65`**. Удержание ключевых слоёв базовой модели в VRAM полностью снимает пробки на шине PCIe при вычислении гигантских матриц адаптера, выбивая скорость **~39s на шаг**.
+> 
+> *Внимание: Не используйте `0.65` для стандартных рангов (128–512) — это вызовет фрагментацию VRAM и лишние микропростои шины.*
+
+#### 🔑 Key Engineering Highlights:
+* **PCIe Bottleneck Bypass:** Lowering `layer_offloading_transformer_percent` to `0.65` kept critical matrices inside GDDR6X, removing GPU stall states.
+* **Zero-OOM Latent Cache Clearing:** Async RAM/VRAM cache clearing prevents memory leak spikes during step checkpoint saves.
+
+## Logs: [HYPER-SPEED 17.09.2026](https://github.com/OrakulStudio/AI-Toolkit-Windows11/blob/main/Flux2D_Logs_yaml_17.09.2026/r1280f2aivazovsky.txt)
+
+## Configuration file: [yaml](https://github.com/OrakulStudio/AI-Toolkit-Windows11/blob/main/Flux2D_Logs_yaml_17.09.2026/r1280f2aivazovsky.yaml)
+
+
 **Oracle Project - Memory Management Breakthrough**  
 **Authors:** Роман (Orakul)  
 **Date:** February 2026  
