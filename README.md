@@ -423,14 +423,6 @@ Research conducted in Chernihiv, Ukraine during active war conditions:
 If we can optimize code under artillery fire, you can apply it anywhere.
 
 ---
-
-## 🙏 Credits
-
-**Discovery:** Gemini identified memory manager as root cause  
-**Implementation:** Роман + Gemini (collaborative debugging)  
-**Testing:** Chernihiv basement, RTX 4090 test rig  
-**Documentation:** Claude (Oracle Project team)
-
 ---
 
 ## 📋 TODO
